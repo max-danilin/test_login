@@ -1,0 +1,27 @@
+version: '3'
+services:
+  web:
+    build: ./drf_login/
+    ports:
+      - 7777:7777
+    env_file:
+      - ./drf_login/drf_login/.env
+    depends_on:
+      - db
+    restart: always
+  db:
+    build: ./sql/
+    container_name: db
+    hostname: db
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+volumes:
+  postgres_data:
+
+
+
+    
+    
